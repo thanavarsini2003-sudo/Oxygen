@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-64J85JTCTZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-64J85JTCTZ');
+</script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Project Oxygen · Rapido</title>
@@ -412,7 +421,7 @@ nav{top:34px}
     <div class="hk">Need help?</div>
     <h5>Any queries?</h5>
     <p>Reach out directly to the <b>People Manager Coach</b> on Slack for guidance, clarification or a quick chat.</p>
-    <a class="slack-link" href="https://slack.com/app_redirect?team=T0EKHQHK2&app=A0AGHRNJF6U" target="_blank" rel="noopener">
+    <a class="slack-link" href="https://slack.com/app_redirect?team=T0EKHQHK2&app=A0AGHRNJF6U" target="_blank" rel="noopener" onclick="gtag('event', 'click_people_manager_coach', { event_category: 'Slack CTA', event_label: 'People Manager Coach Popup' });">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 15a2 2 0 1 0 0-4h2v4H5zm5 5a2 2 0 1 0 4 0v-2h-4v2zm5-15a2 2 0 1 0-4 0v2h4V5zM9 9V5a2 2 0 1 0-4 0h4zm10 0a2 2 0 1 0 0 4h-2V9h2zm-5-5a2 2 0 1 0-4 0v2h4V4zm0 11v4a2 2 0 1 0 4 0h-4zM5 9a2 2 0 0 0 0 4h4V9H5z"/></svg>
       Open People Manager Coach in Slack <span class="arrow-r">→</span>
     </a>
@@ -1490,3 +1499,5 @@ document.addEventListener('click',(e)=>{ if(!e.target.closest('.help-bubble')) h
 </script>
 </body>
 </html>
+
+
