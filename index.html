@@ -72,6 +72,18 @@ nav.scrolled{border-bottom-color:var(--line);padding:11px 28px}
 .pill .b{width:7px;height:7px;border-radius:50%;background:var(--yellow)}
 .pill.show{opacity:1;transform:none;transition:all .6s var(--ease)}
 
+
+.toolkit-intro{margin-top:32px;font-size:15px;font-weight:600;color:var(--ink)}
+.toolkit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.toolkit-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-align:left;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(16px);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease),opacity .6s var(--ease)}
+.toolkit-card.show{opacity:1;transform:none}
+.toolkit-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--yellow-deep)}
+.toolkit-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:26px;border-radius:100px;background:var(--yellow);color:var(--ink);font-family:"Archivo";font-size:12px;font-weight:800;margin-bottom:14px}
+.toolkit-card h3{font-family:"Archivo";font-size:17px;font-weight:700;line-height:1.2;letter-spacing:-.01em;color:var(--ink);margin-bottom:8px}
+.toolkit-card p{font-size:13px;line-height:1.55;color:var(--ink-soft)}
+@media(max-width:900px){.toolkit-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.toolkit-grid{grid-template-columns:1fr}}
+
 .duties{padding:110px 0 130px;background:var(--paper-2);border-top:1px solid var(--line)}
 .sec-head{max-width:760px;margin-bottom:54px}
 .sec-head .eyebrow{margin-bottom:16px}
@@ -332,7 +344,7 @@ nav{top:34px}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 @media(max-width:560px){.help-card{width:260px}}
 
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.statement .w{opacity:1;transform:none;filter:none}.duty,.pill{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.statement .w{opacity:1;transform:none;filter:none}.duty,.pill,.toolkit-card{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -370,13 +382,35 @@ nav{top:34px}
 
 <section class="overview" id="overview">
   <div class="wrap">
-    <div class="eyebrow">What it is</div>
+    <div class="eyebrow">What This Is</div>
     <p class="statement" id="statement"></p>
-    <div class="pillrow" id="pillrow">
-      <span class="pill"><span class="b"></span>Build trust</span>
-      <span class="pill"><span class="b"></span>Drive performance</span>
-      <span class="pill"><span class="b"></span>Bring out the best</span>
-      <span class="pill"><span class="b"></span>Recognize people</span>
+
+    <p class="toolkit-intro">Each duty includes a four-booklet companion:</p>
+
+    <div class="toolkit-grid" id="toolkitGrid">
+      <div class="toolkit-card">
+        <span class="toolkit-num">01</span>
+        <h3>Cheat Sheet</h3>
+        <p>What the duty means, what to do, what not to do.</p>
+      </div>
+
+      <div class="toolkit-card">
+        <span class="toolkit-num">02</span>
+        <h3>Use Cases</h3>
+        <p>Real moments from Rapido, with the Rapido way, the not-Rapido way, and the IC lens.</p>
+      </div>
+
+      <div class="toolkit-card">
+        <span class="toolkit-num">03</span>
+        <h3>Manager's Dilemmas</h3>
+        <p>Tough calls, with three options and a recommended path.</p>
+      </div>
+
+      <div class="toolkit-card">
+        <span class="toolkit-num">04</span>
+        <h3>When This Happens, Do This</h3>
+        <p>Moment-of playbooks for active situations.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1448,7 +1482,7 @@ if(!reduce){
 }
 
 /* ---------- STATEMENT REVEAL ---------- */
-const statementText='Project Oxygen is a people-manager development program designed to turn every manager into a winning leader. It celebrates managers who bring out the best in their teams, build trust, drive performance, and create an environment where people feel supported, motivated, and recognized.';
+const statementText='A practical toolkit for managers at Rapido, built around the six non negotiable duties.';
 const stEl=document.getElementById('statement');
 statementText.split(' ').forEach(w=>{
   const span=document.createElement('span');
@@ -1472,15 +1506,15 @@ const io=new IntersectionObserver((entries)=>{
       t.classList.add('lit');
       io.unobserve(t);
     }
-    if(t.id==='pillrow'){
-      [...t.children].forEach((p,i)=>setTimeout(()=>p.classList.add('show'),i*120+400));
+    if(t.id==='toolkitGrid'){
+      [...t.children].forEach((p,i)=>setTimeout(()=>p.classList.add('show'),i*120+300));
       io.unobserve(t);
     }
     if(t.classList.contains('duty')){ t.classList.add('in'); io.unobserve(t); }
   });
 },{threshold:.25});
 io.observe(stEl);
-io.observe(document.getElementById('pillrow'));
+io.observe(document.getElementById('toolkitGrid'));
 document.querySelectorAll('.duty').forEach(d=>io.observe(d));
 
 /* INITIAL SELECT */
@@ -1499,5 +1533,3 @@ document.addEventListener('click',(e)=>{ if(!e.target.closest('.help-bubble')) h
 </script>
 </body>
 </html>
-
-
